@@ -215,17 +215,23 @@
         <p class="section-lead">Escribe tu código de rastreo (por ejemplo, el que recibiste al hacer tu pedido) para ver en qué etapa va.</p>
       </div>
 
-      <form class="track-form" id="trackForm" novalidate>
-        <input type="text" id="trackInput" name="trackInput" placeholder="UB-482913" autocomplete="off" required>
-        <button type="submit" class="btn btn-primary">Rastrear</button>
-      </form>
+      <div class="track-layout">
+        <img src="img-tracking.jpg" alt="" class="track-illustration" width="738" height="402" loading="lazy">
 
-      <div class="track-result" id="trackResult" hidden>
-        <div class="track-head">
-          <span class="label-code" id="trackCode">UB-000000</span>
-          <span class="label-status" id="trackStatusPill">En tránsito</span>
+        <div class="track-panel">
+          <form class="track-form" id="trackForm" novalidate>
+            <input type="text" id="trackInput" name="trackInput" placeholder="UB-482913" autocomplete="off" required>
+            <button type="submit" class="btn btn-primary">Rastrear</button>
+          </form>
+
+          <div class="track-result" id="trackResult" hidden>
+            <div class="track-head">
+              <span class="label-code" id="trackCode">UB-000000</span>
+              <span class="label-status" id="trackStatusPill">En tránsito</span>
+            </div>
+            <ol class="timeline" id="timeline"></ol>
+          </div>
         </div>
-        <ol class="timeline" id="timeline"></ol>
       </div>
     </section>
 
@@ -252,6 +258,33 @@
           <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
           <blockquote>“Tengo mi casillero en Miami desde hace meses y cada envío llega completo y a tiempo a mi casa.”</blockquote>
           <figcaption><span class="avatar" style="--avatar-bg:#5F5A3E">DP</span><div><strong>Diana Pinilla</strong><span>Colón</span></div></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ GALERÍA ============ -->
+    <section class="gallery">
+      <div class="section-head">
+        <p class="section-eyebrow">Así se vive Unbox Me!</p>
+        <h2 class="section-title">De la bodega en Miami a tu puerta en Panamá</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img src="img-warehouse.jpg" alt="Bodega de Unbox Me! en Miami, llena de paquetes listos para enviar" loading="lazy">
+          <figcaption>Tu casillero, en nuestra bodega de Miami</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="img-delivery.jpg" alt="Mensajero entregando un paquete de Unbox Me! en Casco Viejo, Ciudad de Panamá" loading="lazy">
+          <figcaption>Entregas puerta a puerta en toda la ciudad</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="img-family.jpg" alt="Familia abriendo cajas de Unbox Me! en un balcón con vista a la Ciudad de Panamá" loading="lazy">
+          <figcaption>Ábrelo en familia</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="img-petsupplies.jpg" alt="Cliente recibiendo un paquete de suministros para mascotas en Casco Viejo" loading="lazy">
+          <figcaption>Hasta lo más inesperado llega bien</figcaption>
         </figure>
       </div>
     </section>

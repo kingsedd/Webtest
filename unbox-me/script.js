@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach((s) => sectionObserver.observe(s));
 
   /* ---------- Aparición al hacer scroll ---------- */
-  const revealTargets = document.querySelectorAll(".perk, .quote-card, .order-card, .testimonial-card, .section-head");
+  const revealTargets = document.querySelectorAll(".perk, .quote-card, .order-card, .testimonial-card, .gallery-item, .section-head");
   revealTargets.forEach((el) => el.classList.add("reveal"));
   if (prefersReducedMotion) {
     revealTargets.forEach((el) => el.classList.add("is-visible"));

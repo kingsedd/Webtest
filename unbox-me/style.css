@@ -284,7 +284,15 @@ section { padding: 76px 24px; }
 
 /* ===================== TRACKING ===================== */
 .track { max-width: var(--content-width); margin: 0 auto; }
-.track-form { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin-bottom: 16px; }
+.track-layout { display: grid; gap: 32px; align-items: start; }
+.track-illustration {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 24px 48px -28px rgba(47, 42, 26, 0.5);
+}
+.track-panel { min-width: 0; }
+.track-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
 .track-form input {
   padding: 14px 16px;
   border: 1px solid var(--border-strong);
@@ -294,9 +302,8 @@ section { padding: 76px 24px; }
   font-size: 1rem;
 }
 .track-form input:focus { border-color: var(--orange-deep); outline: none; }
-.track-hint { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 40px; }
 
-.track-result { max-width: 720px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
+.track-result { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
 .track-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-strong); }
 .track-head .label-code { font-size: 1.2rem; margin: 0; }
 .track-head .label-status {
@@ -355,6 +362,30 @@ section { padding: 76px 24px; }
 .testimonial-card figcaption strong { display: block; font-size: 0.92rem; }
 .testimonial-card figcaption span { display: block; font-size: 0.82rem; color: var(--ink-faint); }
 
+/* ===================== GALERÍA ===================== */
+.gallery { max-width: var(--content-width); margin: 0 auto; }
+.gallery-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.gallery-item {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 20px 40px -26px rgba(47, 42, 26, 0.4);
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 36px 20px 16px;
+  background: linear-gradient(to top, rgba(46, 42, 30, 0.82), transparent);
+  color: var(--surface);
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
 /* ===================== FOOTER ===================== */
 .site-footer { border-top: 1px solid var(--border); padding: 64px 24px 28px; background: var(--bg-band); }
 .footer-inner { max-width: var(--content-width); margin: 0 auto; display: grid; gap: 40px; }
@@ -402,9 +433,11 @@ section { padding: 76px 24px; }
   .order-layout { grid-template-columns: 0.7fr 1fr; justify-items: stretch; }
   .field-row { grid-template-columns: repeat(3, 1fr); }
   #orderForm .field-row { grid-template-columns: repeat(2, 1fr); }
+  .track-layout { grid-template-columns: 1fr 1fr; }
   .track-form { flex-direction: row; }
   .track-form input { flex: 1; }
   .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1.3fr 0.9fr 1fr 1fr 0.8fr; }
 }
 
