@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucía Ferrer — Desarrolladora Full-Stack</title>
+  <meta name="description" content="Portafolio de Lucía Ferrer, desarrolladora full-stack especializada en productos web, APIs y arquitectura en la nube.">
+
+  <!-- Tipografías: Fraunces (titulares con carácter) + Public Sans (texto) + Space Mono (etiquetas tipo código) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER: barra fija con logo + navegación ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#inicio" class="logo" aria-label="Ir al inicio">
+        <span class="logo-mark">LF</span><span class="logo-dot">.</span>
+      </a>
+
+      <!-- Botón hamburguesa: solo visible en móvil, controla el menú -->
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+        <a href="#contacto" class="nav-cta">Hablemos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Disponible para nuevos proyectos</p>
+
+        <h1 class="hero-title">
+          Construyo productos web que combinan <em>ingeniería sólida</em> con diseño cuidado.
+        </h1>
+
+        <p class="hero-subtitle">
+          Soy Lucía Ferrer, desarrolladora full-stack. Diseño y construyo interfaces, APIs y
+          arquitecturas en la nube para equipos que necesitan software confiable, rápido y
+          fácil de mantener.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+          <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+        </div>
+
+        <div class="hero-roles" aria-hidden="true">
+          <span class="hero-roles-label">Trabajo como</span>
+          <span class="hero-roles-text" id="roleTyper"></span><span class="hero-roles-cursor">_</span>
+        </div>
+      </div>
+
+      <!-- Panel decorativo tipo editor de código: refuerza el tema del portafolio -->
+      <div class="hero-panel" role="presentation">
+        <div class="panel-bar">
+          <span class="panel-dot"></span><span class="panel-dot"></span><span class="panel-dot"></span>
+          <span class="panel-filename">stack.js</span>
+        </div>
+        <pre class="panel-code"><code><span class="tok-kw">const</span> <span class="tok-var">stack</span> = {
+  <span class="tok-key">frontend</span>: [<span class="tok-str">"React"</span>, <span class="tok-str">"TypeScript"</span>],
+  <span class="tok-key">backend</span>:  [<span class="tok-str">"Node.js"</span>, <span class="tok-str">"GraphQL"</span>],
+  <span class="tok-key">datos</span>:    [<span class="tok-str">"PostgreSQL"</span>, <span class="tok-str">"Redis"</span>],
+  <span class="tok-key">nube</span>:     [<span class="tok-str">"AWS"</span>, <span class="tok-str">"Docker"</span>],
+};</code></pre>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 2: SOBRE MÍ ============ -->
+    <section class="about" id="sobre-mi">
+      <div class="section-head">
+        <p class="section-eyebrow">Sobre mí</p>
+        <h2 class="section-title">Cinco años conectando interfaces con la infraestructura que las sostiene.</h2>
+        <p class="section-lead">
+          Empecé maquetando páginas estáticas y terminé diseñando los sistemas que las alimentan.
+          Hoy trabajo de extremo a extremo: desde el primer boceto en Figma hasta el pipeline que
+          despliega el código en producción.
+        </p>
+      </div>
+
+      <div class="capability-grid">
+        <article class="capability-card">
+          <span class="capability-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r=".6" fill="currentColor" stroke="none"/><circle cx="9" cy="6.5" r=".6" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <h3>Interfaces</h3>
+          <p>Componentes accesibles y estados de carga cuidados, con React y CSS moderno, pensados para rendimiento real.</p>
+        </article>
+
+        <article class="capability-card">
+          <span class="capability-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </span>
+          <h3>APIs y backend</h3>
+          <p>Servicios en Node.js y GraphQL con foco en contratos claros, versionado y tiempos de respuesta bajos.</p>
+        </article>
+
+        <article class="capability-card">
+          <span class="capability-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17a4 4 0 0 1-1-7.9A5 5 0 0 1 15.5 7 4.5 4.5 0 0 1 17 15.9"/><path d="M12 12v6M9.5 15.5 12 18l2.5-2.5"/></svg>
+          </span>
+          <h3>Nube y despliegue</h3>
+          <p>Infraestructura en AWS, contenedores con Docker y pipelines de CI/CD que llevan cada cambio a producción sin fricción.</p>
+        </article>
+
+        <article class="capability-card">
+          <span class="capability-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+          </span>
+          <h3>Datos</h3>
+          <p>Modelado de bases PostgreSQL, caché con Redis y consultas optimizadas para conjuntos de datos grandes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 3: PROYECTOS ============ -->
+    <section class="projects" id="proyectos">
+      <div class="section-head">
+        <p class="section-eyebrow">Proyectos</p>
+        <h2 class="section-title">Trabajo reciente</h2>
+        <p class="section-lead">Una selección de productos que diseñé y construí de principio a fin.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Nimbus</h3>
+            <span class="project-tag">Producto</span>
+          </div>
+          <p>Panel de analítica en tiempo real para equipos de soporte, con streaming de eventos y alertas configurables.</p>
+          <ul class="project-stack">
+            <li>React</li><li>WebSockets</li><li>PostgreSQL</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="project-link">Ver demo →</a>
+            <a href="#" class="project-link">Código →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Flujo</h3>
+            <span class="project-tag">Automatización</span>
+          </div>
+          <p>Motor de automatización de tareas que conecta APIs de terceros mediante flujos visuales configurables.</p>
+          <ul class="project-stack">
+            <li>Node.js</li><li>GraphQL</li><li>Redis</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="project-link">Ver demo →</a>
+            <a href="#" class="project-link">Código →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Cartografía</h3>
+            <span class="project-tag">API</span>
+          </div>
+          <p>API geoespacial para optimizar rutas de reparto, con cálculo de distancias y zonas de cobertura.</p>
+          <ul class="project-stack">
+            <li>Python</li><li>PostGIS</li><li>Docker</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="project-link">Ver demo →</a>
+            <a href="#" class="project-link">Código →</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Ledger</h3>
+            <span class="project-tag">Fintech</span>
+          </div>
+          <p>Sistema de facturación multi-moneda con conciliación automática y exportación contable.</p>
+          <ul class="project-stack">
+            <li>TypeScript</li><li>AWS</li><li>Stripe API</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="project-link">Ver demo →</a>
+            <a href="#" class="project-link">Código →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" id="contacto">
+    <div class="footer-inner">
+      <div class="footer-main">
+        <p class="footer-title">¿Tienes un proyecto en mente?</p>
+        <a href="mailto:hola@luciaferrer.dev" class="footer-email">hola@luciaferrer.dev</a>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col">
+          <p class="footer-col-title">Redes</p>
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">X / Twitter</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Sitio</p>
+          <a href="#inicio" class="footer-link">Inicio</a>
+          <a href="#sobre-mi" class="footer-link">Sobre mí</a>
+          <a href="#proyectos" class="footer-link">Proyectos</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Lucía Ferrer. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
