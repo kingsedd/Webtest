@@ -132,11 +132,8 @@ section { padding: 76px 24px; }
 .site-header.is-scrolled { border-bottom-color: var(--border); background: rgba(246, 241, 228, 0.96); }
 .header-inner { max-width: var(--content-width); margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
 
-.logo { display: inline-flex; align-items: center; gap: 10px; }
-.logo-icon { flex-shrink: 0; }
-.logo-word { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); }
-.logo-word em { font-style: italic; color: var(--khaki-deep); }
-.logo-bang { color: var(--orange-deep); }
+.logo { display: inline-flex; align-items: center; }
+.logo-icon { flex-shrink: 0; border-radius: 50%; }
 
 .nav-toggle {
   display: flex; flex-direction: column; justify-content: center; gap: 5px;

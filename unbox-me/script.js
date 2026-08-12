@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =================================================================
      Utilidades: dinero, hash determinista y orden simulado
      ================================================================= */
-  const money = (n) => `$${n.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
+  const money = (n) => `$${n.toLocaleString("es-PA", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
 
   const hashCode = (str) => {
     let h = 0;
@@ -89,15 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   const writeOrders = (orders) => localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
 
-  const STAGES = ["Recibido en bodega", "En tránsito", "En reparto", "Entregado"];
+  const STAGES = ["Recibido en Miami", "En tránsito a Panamá", "En reparto", "Entregado"];
   const STAGE_META = {
-    "Recibido en bodega": "Bodega Unbox Me! — Ciudad de México",
-    "En tránsito": "En ruta hacia el centro de distribución destino",
-    "En reparto": "Con el mensajero, en camino a la dirección final",
+    "Recibido en Miami": "Bodega Unbox Me! — Miami, FL",
+    "En tránsito a Panamá": "En camino hacia Ciudad de Panamá",
+    "En reparto": "Con el mensajero, en camino a tu dirección",
     "Entregado": "Recibido por el destinatario",
   };
 
-  const formatDate = (d) => d.toLocaleDateString("es-MX", { day: "2-digit", month: "short" });
+  const formatDate = (d) => d.toLocaleDateString("es-PA", { day: "2-digit", month: "short" });
 
   /* Construye una línea de tiempo de 4 etapas. `progress` = índice de la
      etapa actual (0 a 3). `anchorDate` = fecha del pedido/base. */
@@ -134,36 +134,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* =================================================================
-     Cotizador: peso real vs. volumétrico
+     Cotizador: $3.00 por libra, mínimo $5.00 para 1 lb o menos
      ================================================================= */
   const quoteForm = document.getElementById("quoteForm");
   quoteForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const weight = parseFloat(document.getElementById("qWeight").value) || 0;
-    const length = parseFloat(document.getElementById("qLength").value) || 0;
-    const width = parseFloat(document.getElementById("qWidth").value) || 0;
-    const height = parseFloat(document.getElementById("qHeight").value) || 0;
-    const zoneMultiplier = parseFloat(document.getElementById("qZone").value) || 1;
-    const zoneLabel = document.getElementById("qZone").selectedOptions[0].textContent;
 
-    // Fórmula estándar de paquetería: peso volumétrico = (L×A×A) / 5000
-    const volumetric = (length * width * height) / 5000;
-    const billable = Math.max(weight, volumetric);
-
-    const baseFee = 45;
-    const ratePerKg = 38;
-    const total = baseFee + billable * ratePerKg * zoneMultiplier;
+    const ratePerLb = 3.0;
+    const minimumCharge = 5.0;
+    const total = Math.max(weight * ratePerLb, minimumCharge);
 
     document.getElementById("quotePrice").textContent = money(total);
 
     const breakdown = document.getElementById("quoteBreakdown");
     breakdown.innerHTML = `
-      <li><span>Peso real</span><span>${weight.toFixed(1)} kg</span></li>
-      <li><span>Peso volumétrico</span><span>${volumetric.toFixed(1)} kg</span></li>
-      <li><span>Peso a facturar</span><span>${billable.toFixed(1)} kg</span></li>
-      <li><span>Zona</span><span>${zoneLabel}</span></li>
-      <li><span>Cuota base</span><span>${money(baseFee)}</span></li>
+      <li><span>Peso estimado</span><span>${weight.toFixed(1)} lb</span></li>
+      <li><span>Tarifa</span><span>${money(ratePerLb)} / lb</span></li>
+      <li><span>Cargo mínimo</span><span>${money(minimumCharge)}</span></li>
     `;
 
     document.getElementById("quoteResult").hidden = false;
