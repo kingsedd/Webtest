@@ -392,7 +392,7 @@ section { padding: 76px 24px; }
   .track-form { flex-direction: row; }
   .track-form input { flex: 1; }
   .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1.3fr 0.9fr 1fr 1fr 0.8fr; }
 }
 
 /* ===================================================================
