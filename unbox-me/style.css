@@ -134,6 +134,8 @@ section { padding: 76px 24px; }
 
 .logo { display: inline-flex; align-items: center; }
 .logo-icon { flex-shrink: 0; border-radius: 50%; }
+.logo-icon--header { width: 60px; height: 60px; }
+.logo-icon--footer { width: 56px; height: 56px; }
 
 .nav-toggle {
   display: flex; flex-direction: column; justify-content: center; gap: 5px;
@@ -187,8 +189,12 @@ section { padding: 76px 24px; }
 .stat dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 500; color: var(--ink); }
 .stat-of { font-size: 1rem; color: var(--ink-faint); }
 
+.hero-visual { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.hero-illustration { width: 100%; max-width: 260px; height: auto; }
+
 /* Tarjeta decorativa: etiqueta de envío */
 .hero-panel {
+  width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -223,15 +229,21 @@ section { padding: 76px 24px; }
 }
 
 /* ===================== PERKS ===================== */
-.perks-grid { max-width: var(--content-width); margin: 0 auto; display: grid; gap: 28px; grid-template-columns: 1fr; }
+.perks-layout { max-width: var(--content-width); margin: 0 auto; display: grid; gap: 40px; align-items: center; }
+.perks-illustration { width: 100%; max-width: 240px; height: auto; margin: 0 auto; }
+.perks-grid { display: grid; gap: 28px; grid-template-columns: 1fr; }
 .perk { display: flex; align-items: flex-start; gap: 14px; }
 .perk-icon { width: 26px; height: 26px; flex-shrink: 0; color: var(--khaki-deep); margin-top: 2px; }
 .perk p { color: var(--ink-muted); font-size: 0.95rem; }
 .perk strong { display: block; color: var(--ink); font-size: 1rem; margin-bottom: 4px; }
 
 /* ===================== FORM CARDS (cotizador / pedido) ===================== */
+.order-layout { max-width: var(--content-width); margin: 0 auto; display: grid; gap: 32px; align-items: center; justify-items: center; }
+.order-illustration { width: 100%; max-width: 220px; height: auto; }
+
 .quote-card, .order-card {
   max-width: 620px;
+  width: 100%;
   margin: 0 auto;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -367,6 +379,7 @@ section { padding: 76px 24px; }
   section { padding: 104px 40px; }
 
   .header-inner { padding: 16px 40px; }
+  .logo-icon--header { width: 72px; height: 72px; }
   .nav-toggle { display: none; }
   .primary-nav {
     position: static; flex-direction: row; align-items: center;
@@ -382,8 +395,11 @@ section { padding: 76px 24px; }
   .nav-cta { margin-top: 0; padding: 10px 20px; }
 
   .hero { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 156px 40px 88px; }
+  .hero-illustration { max-width: 300px; }
 
-  .perks-grid { grid-template-columns: repeat(4, 1fr); }
+  .perks-layout { grid-template-columns: 0.7fr 1.3fr; }
+  .perks-grid { grid-template-columns: repeat(2, 1fr); }
+  .order-layout { grid-template-columns: 0.7fr 1fr; justify-items: stretch; }
   .field-row { grid-template-columns: repeat(3, 1fr); }
   #orderForm .field-row { grid-template-columns: repeat(2, 1fr); }
   .track-form { flex-direction: row; }

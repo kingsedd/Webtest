@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-labelledby="casilleroTitle">
+  <title id="casilleroTitle">Pared de casilleros postales</title>
+
+  <!-- Patas del mueble -->
+  <rect x="55" y="318" width="14" height="18" rx="3" fill="#5F5A3E"/>
+  <rect x="231" y="318" width="14" height="18" rx="3" fill="#5F5A3E"/>
+
+  <!-- Cuerpo del mueble -->
+  <rect x="20" y="20" width="260" height="300" rx="16" fill="#5F5A3E"/>
+
+  <!-- Puertas: 3 columnas x 4 filas -->
+  <g>
+    <!-- fila 1 -->
+    <rect x="36" y="36" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <rect x="115" y="36" width="69" height="59" rx="6" fill="#FBE3CD"/>
+    <rect x="194" y="36" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <!-- fila 2 -->
+    <rect x="36" y="105" width="69" height="59" rx="6" fill="#FBE3CD"/>
+    <rect x="115" y="105" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <rect x="194" y="105" width="69" height="59" rx="6" fill="#FBE3CD"/>
+    <!-- fila 3 -->
+    <rect x="36" y="174" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <rect x="115" y="174" width="69" height="59" rx="6" fill="#FBE3CD"/>
+    <rect x="194" y="174" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <!-- fila 4 -->
+    <rect x="36" y="243" width="69" height="59" rx="6" fill="#FBE3CD"/>
+    <rect x="115" y="243" width="69" height="59" rx="6" fill="#E7E0C7"/>
+    <rect x="194" y="243" width="69" height="59" rx="6" fill="#FBE3CD"/>
+  </g>
+
+  <!-- Perillas -->
+  <g fill="none" stroke="#5F5A3E" stroke-width="2.5">
+    <circle cx="93" cy="65" r="5"/>
+    <circle cx="172" cy="65" r="5"/>
+    <circle cx="251" cy="65" r="5"/>
+    <circle cx="93" cy="134" r="5"/>
+    <circle cx="172" cy="134" r="5"/>
+    <circle cx="251" cy="134" r="5"/>
+    <circle cx="93" cy="203" r="5"/>
+    <circle cx="172" cy="203" r="5"/>
+    <circle cx="251" cy="203" r="5"/>
+    <circle cx="93" cy="272" r="5"/>
+    <circle cx="172" cy="272" r="5"/>
+    <circle cx="251" cy="272" r="5"/>
+  </g>
+
+  <!-- Casillero con correo asomando (fila 2, columna 2) -->
+  <rect x="115" y="105" width="69" height="59" rx="6" fill="#F2A26B"/>
+  <circle cx="172" cy="134" r="5" fill="none" stroke="#5F5A3E" stroke-width="2.5"/>
+  <polygon points="128,118 172,140 172,118" fill="#FBE3CD" opacity="0.9"/>
+  <polygon points="128,118 172,118 150,132" fill="#F6F1E4"/>
+</svg>

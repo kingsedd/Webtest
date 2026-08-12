@@ -21,7 +21,7 @@
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#inicio" class="logo" aria-label="Unbox Me! — ir al inicio">
-        <img src="logo-small.png" alt="Unbox Me!" class="logo-icon" width="44" height="44">
+        <img src="logo.png" alt="Unbox Me!" class="logo-icon logo-icon--header" width="60" height="60">
       </a>
 
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
@@ -72,25 +72,31 @@
         </dl>
       </div>
 
-      <!-- Tarjeta decorativa tipo etiqueta de envío -->
-      <div class="hero-panel" role="presentation">
-        <div class="label-row">
-          <span class="label-stamp">Frágil</span>
-          <span class="label-stamp label-stamp--ghost">Este lado arriba</span>
+      <div class="hero-visual">
+        <img src="img-package.svg" alt="" class="hero-illustration" width="300" height="300">
+
+        <!-- Tarjeta decorativa tipo etiqueta de envío -->
+        <div class="hero-panel" role="presentation">
+          <div class="label-row">
+            <span class="label-stamp">Frágil</span>
+            <span class="label-stamp label-stamp--ghost">Este lado arriba</span>
+          </div>
+          <div class="label-code">UB-482913</div>
+          <ul class="label-meta">
+            <li><span>Peso</span><strong>3.4 lb</strong></li>
+            <li><span>Destino</span><strong>Ciudad de Panamá</strong></li>
+            <li><span>Estado</span><strong class="label-status">En tránsito</strong></li>
+          </ul>
+          <div class="label-barcode" aria-hidden="true"></div>
         </div>
-        <div class="label-code">UB-482913</div>
-        <ul class="label-meta">
-          <li><span>Peso</span><strong>3.4 lb</strong></li>
-          <li><span>Destino</span><strong>Ciudad de Panamá</strong></li>
-          <li><span>Estado</span><strong class="label-status">En tránsito</strong></li>
-        </ul>
-        <div class="label-barcode" aria-hidden="true"></div>
       </div>
     </section>
 
     <!-- ============ TIRA DE SERVICIOS ============ -->
     <section class="perks" aria-label="Beneficios del servicio">
-      <div class="perks-grid">
+      <div class="perks-layout">
+        <img src="img-casillero.svg" alt="" class="perks-illustration" width="300" height="340">
+        <div class="perks-grid">
         <div class="perk">
           <svg class="perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg>
           <p><strong>Casillero en Miami</strong>Dirección gratuita en EE. UU. para recibir tus compras.</p>
@@ -106,6 +112,7 @@
         <div class="perk">
           <svg class="perk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12.5 10.8 15 16 9.5"/></svg>
           <p><strong>Entrega en 48–72h</strong>A tu domicilio en Ciudad de Panamá.</p>
+        </div>
         </div>
       </div>
     </section>
@@ -144,6 +151,8 @@
         <p class="section-lead">Cuando compres algo en Estados Unidos y lo envíes a tu casillero en Miami, cuéntanos los detalles aquí para prepararlo y traerlo a Panamá. Te compartimos un código de rastreo al instante.</p>
       </div>
 
+      <div class="order-layout">
+      <img src="img-shopping.svg" alt="" class="order-illustration" width="300" height="340">
       <div class="order-card">
         <form class="order-form" id="orderForm" novalidate>
           <div class="field-row">
@@ -194,6 +203,7 @@
           <p class="success-code" id="successCode">UB-000000</p>
           <a href="#rastrear" class="btn btn-ghost btn-block" id="successToTrack">Rastrear este paquete</a>
         </div>
+      </div>
       </div>
     </section>
 
@@ -252,7 +262,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="#inicio" class="logo" aria-label="Unbox Me! — ir al inicio">
-          <img src="logo-small.png" alt="Unbox Me!" class="logo-icon" width="40" height="40">
+          <img src="logo.png" alt="Unbox Me!" class="logo-icon logo-icon--footer" width="56" height="56">
         </a>
         <p>Casillero virtual en Miami con rastreo en tiempo real, cotización transparente por libra y ayuda para comprar si no tienes tarjeta internacional.</p>
       </div>
