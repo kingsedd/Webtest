@@ -1,232 +1,761 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucía Ferrer — Desarrolladora Full-Stack</title>
-  <meta name="description" content="Portafolio de Lucía Ferrer, desarrolladora full-stack especializada en productos web, APIs y arquitectura en la nube.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unboxme — Tu casillero en EE.UU. y entregas a domicilio</title>
+<meta name="description" content="Unboxme: recibe, consolida y entrega tus compras de EE.UU. directo a la puerta de tu casa. Casillero gratis en Miami, envíos aéreos y marítimos sin cargos ocultos.">
 
-  <!-- Tipografías: Fraunces (titulares con carácter) + Public Sans (texto) + Space Mono (etiquetas tipo código) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=Public+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FDFBF7',
+          primary: {
+            DEFAULT: '#F27D42',
+            light: '#FF9153',
+            dark: '#D9622A'
+          },
+          ink: '#2D2A26'
+        },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          display: ['Poppins', 'sans-serif']
+        },
+        boxShadow: {
+          soft: '0 10px 40px -12px rgba(45, 42, 38, 0.15)',
+          card: '0 8px 24px -8px rgba(242, 125, 66, 0.18)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background-color: #FDFBF7; color: #2D2A26; }
+  h1, h2, h3, h4, .font-display { font-family: 'Poppins', sans-serif; }
+
+  .fade-in { animation: fadeIn 0.6s ease-out both; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .wa-pulse::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: #25D366;
+    opacity: 0.6;
+    animation: waPing 2s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  @keyframes waPing {
+    75%, 100% { transform: scale(1.8); opacity: 0; }
+  }
+
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .accordion-item.open .accordion-content { max-height: 400px; }
+  .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-chevron { transition: transform 0.3s ease; }
+
+  .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .mobile-menu.open { max-height: 480px; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #FDFBF7; }
+  ::-webkit-scrollbar-thumb { background: #F27D42; border-radius: 999px; }
+
+  .track-step { opacity: 0.35; }
+  .track-step.active { opacity: 1; }
+</style>
 </head>
-<body>
+<body class="antialiased">
 
-  <!-- ============ HEADER: barra fija con logo + navegación ============ -->
-  <header class="site-header" id="siteHeader">
-    <div class="header-inner">
-      <a href="#inicio" class="logo" aria-label="Ir al inicio">
-        <span class="logo-mark">LF</span><span class="logo-dot">.</span>
+<!-- ============ NAVBAR ============ -->
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-ink/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-20">
+
+    <!-- LOGO: reemplaza este bloque con tu <img src="tu-logo.svg"> o SVG propio -->
+    <a href="#inicio" class="flex items-center gap-2.5 shrink-0" id="logo-slot">
+      <span class="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center text-white shadow-card">
+        <i data-lucide="package" class="w-5 h-5"></i>
+      </span>
+      <span class="font-display font-extrabold text-2xl tracking-tight text-ink">Unbox<span class="text-primary">me</span></span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 font-medium text-[15px]">
+      <a href="#como-funciona" class="hover:text-primary transition-colors">¿Cómo funciona?</a>
+      <a href="#servicios" class="hover:text-primary transition-colors">Servicios</a>
+      <a href="#cotizador" class="hover:text-primary transition-colors">Cotizador</a>
+      <a href="#tarifas" class="hover:text-primary transition-colors">Tarifas</a>
+      <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+    </nav>
+
+    <div class="hidden lg:block">
+      <a href="#registro" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-3 rounded-2xl shadow-card transition-all hover:-translate-y-0.5">
+        <i data-lucide="lock-keyhole-open" class="w-4 h-4"></i>
+        Abrir mi Casillero Gratis
       </a>
-
-      <!-- Botón hamburguesa: solo visible en móvil, controla el menú -->
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú de navegación">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="primary-nav" id="primaryNav">
-        <a href="#inicio" class="nav-link">Inicio</a>
-        <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-        <a href="#proyectos" class="nav-link">Proyectos</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
-        <a href="#contacto" class="nav-cta">Hablemos</a>
-      </nav>
     </div>
-  </header>
 
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="inicio">
-      <div class="hero-inner">
-        <p class="eyebrow"><span class="eyebrow-dot"></span>Disponible para nuevos proyectos</p>
+    <button id="menuBtn" aria-label="Abrir menú" aria-expanded="false" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-white shadow-soft">
+      <i data-lucide="menu" class="w-6 h-6 text-ink" id="menuIcon"></i>
+    </button>
+  </div>
 
-        <h1 class="hero-title">
-          Construyo productos web que combinan <em>ingeniería sólida</em> con diseño cuidado.
-        </h1>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="mobile-menu lg:hidden bg-white border-t border-ink/5">
+    <div class="flex flex-col px-5 py-4 gap-1 font-medium">
+      <a href="#como-funciona" class="py-3 border-b border-ink/5">¿Cómo funciona?</a>
+      <a href="#servicios" class="py-3 border-b border-ink/5">Servicios</a>
+      <a href="#cotizador" class="py-3 border-b border-ink/5">Cotizador</a>
+      <a href="#tarifas" class="py-3 border-b border-ink/5">Tarifas</a>
+      <a href="#faq" class="py-3 border-b border-ink/5">FAQ</a>
+      <a href="#registro" class="mt-3 inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-5 py-3 rounded-2xl">
+        Abrir mi Casillero Gratis
+      </a>
+    </div>
+  </div>
+</header>
 
-        <p class="hero-subtitle">
-          Soy Lucía Ferrer, desarrolladora full-stack. Diseño y construyo interfaces, APIs y
-          arquitecturas en la nube para equipos que necesitan software confiable, rápido y
-          fácil de mantener.
+<!-- ============ HERO ============ -->
+<section id="inicio" class="relative overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute top-40 -left-24 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-14 pb-20 lg:pt-20 lg:pb-28 grid lg:grid-cols-2 gap-14 items-center relative">
+    <div class="fade-in">
+      <span class="inline-flex items-center gap-2 bg-primary/10 text-primary-dark font-semibold text-sm px-4 py-2 rounded-full mb-6">
+        <i data-lucide="sparkles" class="w-4 h-4"></i>
+        Casillero 100% gratis, sin mensualidades
+      </span>
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.08] text-ink mb-6">
+        Tus compras en EE.UU., directo a la <span class="text-primary">puerta de tu casa.</span>
+      </h1>
+      <p class="text-lg text-ink/70 mb-8 max-w-xl leading-relaxed">
+        Recibimos tus compras online, las inspeccionamos, las consolidamos en una sola caja y te las entregamos en la puerta de tu casa. Sin filas, sin complicaciones, sin sorpresas.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-10">
+        <a href="#registro" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-4 rounded-2xl shadow-card transition-all hover:-translate-y-0.5">
+          <i data-lucide="user-plus" class="w-5 h-5"></i>
+          Crear Casillero Gratis
+        </a>
+        <a href="#cotizador" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-ink/5 text-ink font-semibold px-7 py-4 rounded-2xl shadow-soft transition-all hover:-translate-y-0.5">
+          <i data-lucide="calculator" class="w-5 h-5"></i>
+          Calcular Envío
+        </a>
+      </div>
+
+      <!-- Simulador de tracking -->
+      <div class="bg-white rounded-2xl shadow-soft p-5 max-w-lg">
+        <p class="text-sm font-semibold text-ink/60 mb-3 flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+          Rastrea tu paquete
         </p>
+        <form id="trackForm" class="flex gap-2">
+          <input id="trackInput" type="text" placeholder="Ej: UBM-284910" required
+            class="flex-1 min-w-0 bg-cream border border-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
+          <button type="submit" class="shrink-0 bg-ink hover:bg-ink/90 text-white font-semibold px-5 py-3 rounded-xl transition-colors flex items-center gap-2">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Rastrear</span>
+          </button>
+        </form>
 
-        <div class="hero-actions">
-          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
-          <a href="#contacto" class="btn btn-ghost">Hablemos</a>
-        </div>
-
-        <div class="hero-roles" aria-hidden="true">
-          <span class="hero-roles-label">Trabajo como</span>
-          <span class="hero-roles-text" id="roleTyper"></span><span class="hero-roles-cursor">_</span>
-        </div>
-      </div>
-
-      <!-- Panel decorativo tipo editor de código: refuerza el tema del portafolio -->
-      <div class="hero-panel" role="presentation">
-        <div class="panel-bar">
-          <span class="panel-dot"></span><span class="panel-dot"></span><span class="panel-dot"></span>
-          <span class="panel-filename">stack.js</span>
-        </div>
-        <pre class="panel-code"><code><span class="tok-kw">const</span> <span class="tok-var">stack</span> = {
-  <span class="tok-key">frontend</span>: [<span class="tok-str">"React"</span>, <span class="tok-str">"TypeScript"</span>],
-  <span class="tok-key">backend</span>:  [<span class="tok-str">"Node.js"</span>, <span class="tok-str">"GraphQL"</span>],
-  <span class="tok-key">datos</span>:    [<span class="tok-str">"PostgreSQL"</span>, <span class="tok-str">"Redis"</span>],
-  <span class="tok-key">nube</span>:     [<span class="tok-str">"AWS"</span>, <span class="tok-str">"Docker"</span>],
-};</code></pre>
-      </div>
-    </section>
-
-    <!-- ============ SECCIÓN 2: SOBRE MÍ ============ -->
-    <section class="about" id="sobre-mi">
-      <div class="section-head">
-        <p class="section-eyebrow">Sobre mí</p>
-        <h2 class="section-title">Cinco años conectando interfaces con la infraestructura que las sostiene.</h2>
-        <p class="section-lead">
-          Empecé maquetando páginas estáticas y terminé diseñando los sistemas que las alimentan.
-          Hoy trabajo de extremo a extremo: desde el primer boceto en Figma hasta el pipeline que
-          despliega el código en producción.
-        </p>
-      </div>
-
-      <div class="capability-grid">
-        <article class="capability-card">
-          <span class="capability-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r=".6" fill="currentColor" stroke="none"/><circle cx="9" cy="6.5" r=".6" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <h3>Interfaces</h3>
-          <p>Componentes accesibles y estados de carga cuidados, con React y CSS moderno, pensados para rendimiento real.</p>
-        </article>
-
-        <article class="capability-card">
-          <span class="capability-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-          </span>
-          <h3>APIs y backend</h3>
-          <p>Servicios en Node.js y GraphQL con foco en contratos claros, versionado y tiempos de respuesta bajos.</p>
-        </article>
-
-        <article class="capability-card">
-          <span class="capability-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17a4 4 0 0 1-1-7.9A5 5 0 0 1 15.5 7 4.5 4.5 0 0 1 17 15.9"/><path d="M12 12v6M9.5 15.5 12 18l2.5-2.5"/></svg>
-          </span>
-          <h3>Nube y despliegue</h3>
-          <p>Infraestructura en AWS, contenedores con Docker y pipelines de CI/CD que llevan cada cambio a producción sin fricción.</p>
-        </article>
-
-        <article class="capability-card">
-          <span class="capability-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
-          </span>
-          <h3>Datos</h3>
-          <p>Modelado de bases PostgreSQL, caché con Redis y consultas optimizadas para conjuntos de datos grandes.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ SECCIÓN 3: PROYECTOS ============ -->
-    <section class="projects" id="proyectos">
-      <div class="section-head">
-        <p class="section-eyebrow">Proyectos</p>
-        <h2 class="section-title">Trabajo reciente</h2>
-        <p class="section-lead">Una selección de productos que diseñé y construí de principio a fin.</p>
-      </div>
-
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Nimbus</h3>
-            <span class="project-tag">Producto</span>
+        <div id="trackResult" class="hidden mt-5 border-t border-ink/10 pt-4">
+          <p class="text-sm text-ink/60 mb-3">Estado del envío <span id="trackCode" class="font-semibold text-ink"></span>:</p>
+          <div class="flex justify-between items-start text-center">
+            <div class="track-step flex-1 flex flex-col items-center gap-1.5" data-step="1">
+              <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center"><i data-lucide="package-check" class="w-4 h-4"></i></span>
+              <span class="text-[11px] leading-tight text-ink/70">Recibido<br>Miami</span>
+            </div>
+            <div class="track-step flex-1 flex flex-col items-center gap-1.5" data-step="2">
+              <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center"><i data-lucide="plane" class="w-4 h-4"></i></span>
+              <span class="text-[11px] leading-tight text-ink/70">En<br>tránsito</span>
+            </div>
+            <div class="track-step flex-1 flex flex-col items-center gap-1.5" data-step="3">
+              <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center"><i data-lucide="landmark" class="w-4 h-4"></i></span>
+              <span class="text-[11px] leading-tight text-ink/70">En<br>aduana</span>
+            </div>
+            <div class="track-step flex-1 flex flex-col items-center gap-1.5" data-step="4">
+              <span class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center"><i data-lucide="home" class="w-4 h-4"></i></span>
+              <span class="text-[11px] leading-tight text-ink/70">Entregado</span>
+            </div>
           </div>
-          <p>Panel de analítica en tiempo real para equipos de soporte, con streaming de eventos y alertas configurables.</p>
-          <ul class="project-stack">
-            <li>React</li><li>WebSockets</li><li>PostgreSQL</li>
-          </ul>
-          <div class="project-links">
-            <a href="#" class="project-link">Ver demo →</a>
-            <a href="#" class="project-link">Código →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Flujo</h3>
-            <span class="project-tag">Automatización</span>
-          </div>
-          <p>Motor de automatización de tareas que conecta APIs de terceros mediante flujos visuales configurables.</p>
-          <ul class="project-stack">
-            <li>Node.js</li><li>GraphQL</li><li>Redis</li>
-          </ul>
-          <div class="project-links">
-            <a href="#" class="project-link">Ver demo →</a>
-            <a href="#" class="project-link">Código →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Cartografía</h3>
-            <span class="project-tag">API</span>
-          </div>
-          <p>API geoespacial para optimizar rutas de reparto, con cálculo de distancias y zonas de cobertura.</p>
-          <ul class="project-stack">
-            <li>Python</li><li>PostGIS</li><li>Docker</li>
-          </ul>
-          <div class="project-links">
-            <a href="#" class="project-link">Ver demo →</a>
-            <a href="#" class="project-link">Código →</a>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Ledger</h3>
-            <span class="project-tag">Fintech</span>
-          </div>
-          <p>Sistema de facturación multi-moneda con conciliación automática y exportación contable.</p>
-          <ul class="project-stack">
-            <li>TypeScript</li><li>AWS</li><li>Stripe API</li>
-          </ul>
-          <div class="project-links">
-            <a href="#" class="project-link">Ver demo →</a>
-            <a href="#" class="project-link">Código →</a>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer" id="contacto">
-    <div class="footer-inner">
-      <div class="footer-main">
-        <p class="footer-title">¿Tienes un proyecto en mente?</p>
-        <a href="mailto:hola@luciaferrer.dev" class="footer-email">hola@luciaferrer.dev</a>
-      </div>
-
-      <div class="footer-columns">
-        <div class="footer-col">
-          <p class="footer-col-title">Redes</p>
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">LinkedIn</a>
-          <a href="#" class="footer-link">X / Twitter</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Sitio</p>
-          <a href="#inicio" class="footer-link">Inicio</a>
-          <a href="#sobre-mi" class="footer-link">Sobre mí</a>
-          <a href="#proyectos" class="footer-link">Proyectos</a>
         </div>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> Lucía Ferrer. Todos los derechos reservados.</p>
+    <!-- Ilustración decorativa -->
+    <div class="relative fade-in hidden lg:block" style="animation-delay:.1s">
+      <div class="bg-white rounded-[2rem] shadow-soft p-8 relative">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white"><i data-lucide="box" class="w-6 h-6"></i></span>
+          <div>
+            <p class="font-display font-bold text-lg">Mi Casillero Unboxme</p>
+            <p class="text-sm text-ink/50">3 paquetes esperándote</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 bg-cream rounded-xl p-3">
+            <i data-lucide="shirt" class="w-5 h-5 text-primary shrink-0"></i>
+            <div class="flex-1">
+              <p class="text-sm font-medium">Shein — Ropa</p>
+              <p class="text-xs text-ink/50">2.3 lbs · Recibido hoy</p>
+            </div>
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-primary shrink-0"></i>
+          </div>
+          <div class="flex items-center gap-3 bg-cream rounded-xl p-3">
+            <i data-lucide="smartphone" class="w-5 h-5 text-primary shrink-0"></i>
+            <div class="flex-1">
+              <p class="text-sm font-medium">Amazon — Accesorios</p>
+              <p class="text-xs text-ink/50">0.8 lbs · Recibido ayer</p>
+            </div>
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-primary shrink-0"></i>
+          </div>
+          <div class="flex items-center gap-3 bg-cream rounded-xl p-3">
+            <i data-lucide="footprints" class="w-5 h-5 text-primary shrink-0"></i>
+            <div class="flex-1">
+              <p class="text-sm font-medium">Walmart — Calzado</p>
+              <p class="text-xs text-ink/50">1.6 lbs · Recibido ayer</p>
+            </div>
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-primary shrink-0"></i>
+          </div>
+        </div>
+        <button class="w-full mt-6 bg-primary/10 text-primary-dark font-semibold py-3 rounded-xl flex items-center justify-center gap-2">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          Consolidar y enviar
+        </button>
+      </div>
+      <span class="absolute -bottom-6 -left-6 w-20 h-20 bg-primary rounded-3xl rotate-12 flex items-center justify-center text-white shadow-card">
+        <i data-lucide="truck" class="w-9 h-9"></i>
+      </span>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- ============ CÓMO FUNCIONA ============ -->
+<section id="como-funciona" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Simple y rápido</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">¿Cómo funciona Unboxme?</h2>
+      <p class="text-ink/60 text-lg">Cuatro pasos entre tú y el mundo entero de las compras online.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="relative bg-cream rounded-2xl p-7 hover:-translate-y-1.5 transition-transform">
+        <span class="absolute -top-4 -left-2 font-display font-extrabold text-6xl text-primary/15">01</span>
+        <span class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-5 relative shadow-card"><i data-lucide="id-card" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Regístrate gratis</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Crea tu cuenta y recibe al instante tu dirección física personal en Miami, EE.UU.</p>
+      </div>
+      <div class="relative bg-cream rounded-2xl p-7 hover:-translate-y-1.5 transition-transform">
+        <span class="absolute -top-4 -left-2 font-display font-extrabold text-6xl text-primary/15">02</span>
+        <span class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-5 relative shadow-card"><i data-lucide="shopping-cart" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Compra online</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Compra en Amazon, Shein, eBay, Walmart y más, usando tu nueva dirección de Miami.</p>
+      </div>
+      <div class="relative bg-cream rounded-2xl p-7 hover:-translate-y-1.5 transition-transform">
+        <span class="absolute -top-4 -left-2 font-display font-extrabold text-6xl text-primary/15">03</span>
+        <span class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-5 relative shadow-card"><i data-lucide="scan-search" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Recibimos y consolidamos</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Inspeccionamos, protegemos y unimos tus compras en un solo paquete para ahorrarte dinero.</p>
+      </div>
+      <div class="relative bg-cream rounded-2xl p-7 hover:-translate-y-1.5 transition-transform">
+        <span class="absolute -top-4 -left-2 font-display font-extrabold text-6xl text-primary/15">04</span>
+        <span class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-5 relative shadow-card"><i data-lucide="home" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Entrega en tu puerta</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Te lo llevamos hasta la puerta de tu casa, sin que tengas que ir a buscarlo a ningún lado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COTIZADOR ============ -->
+<section id="cotizador" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div>
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Cotizador instantáneo</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">Calcula tu envío en segundos</h2>
+      <p class="text-ink/60 text-lg mb-6 leading-relaxed">Ingresa el peso aproximado de tu paquete y elige el tipo de envío. Sin cargos ocultos, sin letra pequeña.</p>
+      <ul class="space-y-3">
+        <li class="flex items-center gap-3 text-ink/80"><i data-lucide="badge-check" class="w-5 h-5 text-primary shrink-0"></i>Precio final visible antes de pagar</li>
+        <li class="flex items-center gap-3 text-ink/80"><i data-lucide="badge-check" class="w-5 h-5 text-primary shrink-0"></i>Aéreo: rápido, ideal para lo urgente</li>
+        <li class="flex items-center gap-3 text-ink/80"><i data-lucide="badge-check" class="w-5 h-5 text-primary shrink-0"></i>Marítimo: económico, ideal para volumen</li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-[2rem] shadow-soft p-7 sm:p-9">
+      <div class="mb-6">
+        <label class="block text-sm font-semibold text-ink/70 mb-2">Peso del paquete (lbs)</label>
+        <div class="flex items-center gap-3">
+          <input id="weightInput" type="range" min="0.5" max="50" step="0.5" value="5" class="flex-1 accent-primary h-2">
+          <div class="w-24 shrink-0 bg-cream border border-ink/10 rounded-xl px-3 py-2 flex items-center gap-1">
+            <input id="weightNumber" type="number" min="0.5" max="200" step="0.5" value="5" class="w-full bg-transparent focus:outline-none font-semibold text-center">
+            <span class="text-xs text-ink/50">lbs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-7">
+        <label class="block text-sm font-semibold text-ink/70 mb-3">Tipo de envío</label>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" data-mode="aereo" class="ship-mode-btn active flex flex-col items-center gap-2 border-2 border-primary bg-primary/10 rounded-2xl py-4 transition-all">
+            <i data-lucide="plane" class="w-6 h-6 text-primary"></i>
+            <span class="font-semibold text-sm">Aéreo</span>
+            <span class="text-xs text-ink/50">3-6 días</span>
+          </button>
+          <button type="button" data-mode="maritimo" class="ship-mode-btn flex flex-col items-center gap-2 border-2 border-ink/10 rounded-2xl py-4 transition-all">
+            <i data-lucide="ship" class="w-6 h-6 text-ink/40"></i>
+            <span class="font-semibold text-sm">Marítimo</span>
+            <span class="text-xs text-ink/50">15-25 días</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-ink rounded-2xl p-6 text-center">
+        <p class="text-white/50 text-sm mb-1">Precio estimado</p>
+        <p class="font-display font-extrabold text-4xl text-white"><span id="priceOutput">$27.50</span></p>
+        <p class="text-white/40 text-xs mt-2" id="priceBreakdown">5.0 lbs × $5.50/lb (aéreo)</p>
+        <a href="#registro" class="mt-5 inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold px-6 py-3 rounded-xl w-full transition-colors">
+          Empezar a enviar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECCIÓN MIAMI ============ -->
+<section class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="order-2 lg:order-1 bg-gradient-to-br from-primary to-primary-light rounded-[2rem] p-8 sm:p-10 text-white shadow-card">
+      <div class="flex items-center justify-between mb-6">
+        <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-3 py-1.5 rounded-full text-xs font-semibold">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Tu casillero virtual
+        </span>
+        <i data-lucide="map-pinned" class="w-6 h-6 text-white/70"></i>
+      </div>
+
+      <div class="space-y-4 font-mono text-sm">
+        <div class="flex items-center justify-between bg-white/10 rounded-xl px-4 py-3">
+          <div><span class="text-white/60 block text-[11px]">Nombre</span>Juan Pérez <span class="opacity-70">UBM-2841</span></div>
+          <button class="copy-btn shrink-0 bg-white/20 hover:bg-white/30 rounded-lg p-2 transition-colors" data-copy="Juan Pérez UBM-2841"><i data-lucide="copy" class="w-4 h-4"></i></button>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl px-4 py-3">
+          <div><span class="text-white/60 block text-[11px]">Dirección</span>7801 NW 37th St, Suite 214</div>
+          <button class="copy-btn shrink-0 bg-white/20 hover:bg-white/30 rounded-lg p-2 transition-colors" data-copy="7801 NW 37th St, Suite 214"><i data-lucide="copy" class="w-4 h-4"></i></button>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl px-4 py-3">
+          <div><span class="text-white/60 block text-[11px]">Ciudad / Estado / ZIP</span>Doral, FL 33178</div>
+          <button class="copy-btn shrink-0 bg-white/20 hover:bg-white/30 rounded-lg p-2 transition-colors" data-copy="Doral, FL 33178"><i data-lucide="copy" class="w-4 h-4"></i></button>
+        </div>
+        <div class="flex items-center justify-between bg-white/10 rounded-xl px-4 py-3">
+          <div><span class="text-white/60 block text-[11px]">País</span>Estados Unidos</div>
+          <button class="copy-btn shrink-0 bg-white/20 hover:bg-white/30 rounded-lg p-2 transition-colors" data-copy="Estados Unidos"><i data-lucide="copy" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+      <p class="text-white/70 text-xs mt-5 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4 shrink-0"></i> Este es un ejemplo. Tu dirección real y código de casillero se generan al registrarte.</p>
+    </div>
+
+    <div class="order-1 lg:order-2">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Tu dirección en Miami</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">Compra como si vivieras en EE.UU.</h2>
+      <p class="text-ink/60 text-lg mb-6 leading-relaxed">Al registrarte, te damos una dirección física personal con tu propio número de casillero. Úsala como dirección de envío en cualquier tienda de EE.UU.</p>
+      <div class="flex items-start gap-3 mb-4">
+        <i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
+        <p class="text-ink/70">Cópiala con un clic y pégala en Amazon, Shein, eBay o Walmart al finalizar tu compra.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <i data-lucide="check" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
+        <p class="text-ink/70">Cada paquete queda vinculado automáticamente a tu casillero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Lo que hacemos</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">Servicios destacados</h2>
+      <p class="text-ink/60 text-lg">Todo lo que necesitas para comprar en EE.UU. sin fricción.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl p-7 shadow-soft hover:shadow-card transition-shadow">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="truck" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Puerta a puerta</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Entregamos tu paquete directo en tu casa, sin que tengas que retirarlo en ninguna oficina.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-soft hover:shadow-card transition-shadow">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="layers" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Consolidación</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Juntamos varias compras en un solo envío para que pagues menos por libra.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-soft hover:shadow-card transition-shadow">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="credit-card" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Compra asistida</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">¿No tienes tarjeta internacional? Nosotros compramos por ti en cualquier tienda de EE.UU.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-soft hover:shadow-card transition-shadow">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="message-circle" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-lg mb-2">Alertas por WhatsApp</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Te avisamos al instante cuando tu paquete llega a nuestra bodega en Miami.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TARIFAS ============ -->
+<section id="tarifas" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Precios claros</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">Tarifas sin cargos ocultos</h2>
+      <p class="text-ink/60 text-lg">Pagas exactamente lo que ves aquí. Nada más.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="rounded-[2rem] border-2 border-ink/10 p-8 hover:border-primary transition-colors">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="plane" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-xl mb-1">Envío Aéreo</h3>
+        <p class="text-ink/50 text-sm mb-5">Entrega en 3 a 6 días hábiles</p>
+        <p class="font-display font-extrabold text-4xl mb-1">$5.50<span class="text-lg text-ink/50 font-normal"> / lb</span></p>
+        <ul class="mt-6 space-y-3 text-sm text-ink/70">
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>Peso mínimo facturable: 1 lb</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>Seguro básico incluido</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>Ideal para pedidos urgentes</li>
+        </ul>
+      </div>
+      <div class="rounded-[2rem] border-2 border-ink/10 p-8 hover:border-primary transition-colors">
+        <span class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-5"><i data-lucide="ship" class="w-6 h-6"></i></span>
+        <h3 class="font-display font-bold text-xl mb-1">Envío Marítimo</h3>
+        <p class="text-ink/50 text-sm mb-5">Entrega en 15 a 25 días hábiles</p>
+        <p class="font-display font-extrabold text-4xl mb-1">$3.00<span class="text-lg text-ink/50 font-normal"> / lb</span></p>
+        <ul class="mt-6 space-y-3 text-sm text-ink/70">
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>Peso mínimo facturable: 5 lb</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>Ideal para envíos grandes</li>
+          <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i>La opción más económica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Clientes felices</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 mb-4">Lo que dicen de nosotros</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-7 shadow-soft">
+        <div class="flex gap-1 text-primary mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-ink/70 text-sm leading-relaxed mb-5">"Llegó todo perfecto y ya desempacado en cajas separadas por tienda. Nunca había sido tan fácil comprar en Amazon desde mi país."</p>
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">MG</span>
+          <div><p class="font-semibold text-sm">María González</p><p class="text-xs text-ink/50">Cliente desde 2023</p></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-soft">
+        <div class="flex gap-1 text-primary mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-ink/70 text-sm leading-relaxed mb-5">"Consolidaron 4 pedidos en una sola caja y ahorré muchísimo en el envío. El WhatsApp de avisos es súper útil."</p>
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">CR</span>
+          <div><p class="font-semibold text-sm">Carlos Ramírez</p><p class="text-xs text-ink/50">Cliente desde 2022</p></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-soft">
+        <div class="flex gap-1 text-primary mb-4">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="text-ink/70 text-sm leading-relaxed mb-5">"No tengo tarjeta internacional y el servicio de compra asistida me resolvió la vida. Llegó justo a mi puerta."</p>
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">LP</span>
+          <div><p class="font-semibold text-sm">Laura Pineda</p><p class="text-xs text-ink/50">Cliente desde 2024</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-14">
+      <span class="text-primary font-semibold text-sm uppercase tracking-wider">Dudas frecuentes</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3">Preguntas frecuentes</h2>
+    </div>
+
+    <div class="space-y-4" id="accordion">
+      <div class="accordion-item border border-ink/10 rounded-2xl overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold">
+          ¿Qué pasa con las aduanas y los impuestos?
+          <i data-lucide="chevron-down" class="accordion-chevron w-5 h-5 text-primary shrink-0"></i>
+        </button>
+        <div class="accordion-content px-6">
+          <p class="text-ink/60 text-sm leading-relaxed pb-5">Nosotros gestionamos toda la documentación aduanera de tu envío. Los impuestos y aranceles dependen del valor declarado y la normativa de tu país; te informamos cualquier cargo aplicable antes de la entrega final.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item border border-ink/10 rounded-2xl overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold">
+          ¿Cuánto tiempo tarda la entrega?
+          <i data-lucide="chevron-down" class="accordion-chevron w-5 h-5 text-primary shrink-0"></i>
+        </button>
+        <div class="accordion-content px-6">
+          <p class="text-ink/60 text-sm leading-relaxed pb-5">El envío aéreo tarda entre 3 y 6 días hábiles desde que sale de nuestra bodega. El envío marítimo tarda entre 15 y 25 días hábiles, dependiendo de tu país de destino.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item border border-ink/10 rounded-2xl overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold">
+          ¿Hay artículos prohibidos para enviar?
+          <i data-lucide="chevron-down" class="accordion-chevron w-5 h-5 text-primary shrink-0"></i>
+        </button>
+        <div class="accordion-content px-6">
+          <p class="text-ink/60 text-sm leading-relaxed pb-5">Sí. No podemos transportar líquidos inflamables, baterías de litio sueltas, armas, drogas, alimentos perecederos ni materiales peligrosos. Si tienes dudas sobre un producto en particular, contáctanos antes de comprarlo.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item border border-ink/10 rounded-2xl overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold">
+          ¿Cómo se paga el envío?
+          <i data-lucide="chevron-down" class="accordion-chevron w-5 h-5 text-primary shrink-0"></i>
+        </button>
+        <div class="accordion-content px-6">
+          <p class="text-ink/60 text-sm leading-relaxed pb-5">Aceptamos tarjetas de crédito/débito, transferencia bancaria y billeteras digitales locales. El pago se realiza una vez que tu paquete está listo para salir de nuestra bodega en Miami.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL / REGISTRO ============ -->
+<section id="registro" class="py-16">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
+    <div class="bg-gradient-to-br from-primary to-primary-light rounded-[2rem] px-8 py-14 sm:px-16 text-center text-white shadow-card">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl mb-4">Empieza a comprar sin fronteras hoy mismo</h2>
+      <p class="text-white/85 text-lg mb-8 max-w-xl mx-auto">Abre tu casillero gratis en menos de 2 minutos y recibe tu dirección de Miami al instante.</p>
+      <a href="#" class="inline-flex items-center gap-2 bg-white text-primary-dark font-bold px-8 py-4 rounded-2xl hover:-translate-y-0.5 transition-transform shadow-soft">
+        <i data-lucide="user-plus" class="w-5 h-5"></i>
+        Abrir mi Casillero Gratis
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink text-white/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <span class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white"><i data-lucide="package" class="w-4 h-4"></i></span>
+          <span class="font-display font-extrabold text-xl text-white">Unbox<span class="text-primary">me</span></span>
+        </div>
+        <p class="text-sm leading-relaxed">Tu casillero internacional. Compra en EE.UU. y recibe en tu puerta, sin complicaciones.</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"><i data-lucide="music-2" class="w-4 h-4"></i></a>
+          <a href="#" aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Enlaces</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#como-funciona" class="hover:text-primary transition-colors">¿Cómo funciona?</a></li>
+          <li><a href="#servicios" class="hover:text-primary transition-colors">Servicios</a></li>
+          <li><a href="#cotizador" class="hover:text-primary transition-colors">Cotizador</a></li>
+          <li><a href="#tarifas" class="hover:text-primary transition-colors">Tarifas</a></li>
+          <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Horario de atención</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-primary shrink-0"></i>Lun - Vie: 8:00am - 6:00pm</li>
+          <li class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-primary shrink-0"></i>Sáb: 9:00am - 1:00pm</li>
+          <li class="flex items-center gap-2"><i data-lucide="calendar-x" class="w-4 h-4 text-primary shrink-0"></i>Dom: Cerrado</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Contacto</p>
+        <ul class="space-y-2.5 text-sm">
+          <li class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>7801 NW 37th St, Doral, FL 33178, EE.UU.</li>
+          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-primary shrink-0"></i>hola@unboxme.com</li>
+          <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-primary shrink-0"></i>+1 (305) 555-0192</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+      <p>&copy; <span id="year"></span> Unboxme. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a>
+        <a href="#" class="hover:text-primary transition-colors">Privacidad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
+<a href="https://wa.me/13055550192" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
+   class="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-soft relative hover:scale-105 transition-transform">
+  <span class="wa-pulse absolute inset-0"></span>
+  <i data-lucide="message-circle" class="w-7 h-7 text-white relative z-10"></i>
+</a>
+
+<!-- Toast de copiado -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-24 opacity-0 transition-all duration-300 bg-ink text-white text-sm font-medium px-5 py-3 rounded-xl shadow-soft z-50 flex items-center gap-2">
+  <i data-lucide="check-circle-2" class="w-4 h-4 text-primary-light"></i>
+  <span id="toastMsg">Copiado al portapapeles</span>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // Año dinámico
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Menú móvil
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+    lucide.createIcons();
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuIcon.setAttribute('data-lucide', 'menu');
+      lucide.createIcons();
+    });
+  });
+
+  // Simulador de tracking
+  const trackForm = document.getElementById('trackForm');
+  const trackResult = document.getElementById('trackResult');
+  const trackCode = document.getElementById('trackCode');
+  trackForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const code = document.getElementById('trackInput').value.trim();
+    if (!code) return;
+    trackCode.textContent = code.toUpperCase();
+    trackResult.classList.remove('hidden');
+
+    const steps = trackResult.querySelectorAll('.track-step');
+    steps.forEach(s => s.classList.remove('active'));
+    // Simula un progreso aleatorio pero consistente según el código ingresado
+    let seed = 0;
+    for (const ch of code) seed += ch.charCodeAt(0);
+    const reached = (seed % 4) + 1;
+    steps.forEach(s => {
+      if (parseInt(s.dataset.step) <= reached) s.classList.add('active');
+    });
+  });
+
+  // Cotizador de envíos
+  const weightInput = document.getElementById('weightInput');
+  const weightNumber = document.getElementById('weightNumber');
+  const priceOutput = document.getElementById('priceOutput');
+  const priceBreakdown = document.getElementById('priceBreakdown');
+  const modeButtons = document.querySelectorAll('.ship-mode-btn');
+  let currentMode = 'aereo';
+  const rates = { aereo: 5.50, maritimo: 3.00 };
+  const minWeight = { aereo: 1, maritimo: 5 };
+
+  function updatePrice() {
+    let weight = parseFloat(weightNumber.value) || 0;
+    const billable = Math.max(weight, minWeight[currentMode]);
+    const total = billable * rates[currentMode];
+    priceOutput.textContent = '$' + total.toFixed(2);
+    priceBreakdown.textContent = `${billable.toFixed(1)} lbs × $${rates[currentMode].toFixed(2)}/lb (${currentMode === 'aereo' ? 'aéreo' : 'marítimo'})`;
+  }
+
+  weightInput.addEventListener('input', () => {
+    weightNumber.value = weightInput.value;
+    updatePrice();
+  });
+  weightNumber.addEventListener('input', () => {
+    weightInput.value = weightNumber.value;
+    updatePrice();
+  });
+
+  modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modeButtons.forEach(b => {
+        b.classList.remove('active', 'border-primary', 'bg-primary/10');
+        b.classList.add('border-ink/10');
+        b.querySelector('i').classList.remove('text-primary');
+        b.querySelector('i').classList.add('text-ink/40');
+      });
+      btn.classList.add('active', 'border-primary', 'bg-primary/10');
+      btn.classList.remove('border-ink/10');
+      btn.querySelector('i').classList.add('text-primary');
+      btn.querySelector('i').classList.remove('text-ink/40');
+      currentMode = btn.dataset.mode;
+      updatePrice();
+    });
+  });
+  updatePrice();
+
+  // Copiar dirección
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  let toastTimeout;
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+        toastMsg.textContent = 'Copiado: ' + text;
+      } catch (err) {
+        toastMsg.textContent = text;
+      }
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2200);
+    });
+  });
+
+  // Acordeón FAQ
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
 </body>
 </html>
